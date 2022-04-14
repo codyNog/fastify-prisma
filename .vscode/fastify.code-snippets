@@ -1,0 +1,43 @@
+{
+  "Implement template":  {
+    "prefix": "impl",
+    "body": [
+      "const create${TM_DIRECTORY/^.+\\/(.*)$/$1/} = async (${TM_DIRECTORY/^.+\\/(.*)$/$1/}: ${TM_DIRECTORY/^.+\\/(.*)$/$1/}): Promise<${TM_DIRECTORY/^.+\\/(.*)$/$1/}> => {",
+      "  return ${TM_DIRECTORY/^.+\\/(.*)$/$1/};",
+      "};",
+      "",
+      "const get${TM_DIRECTORY/^.+\\/(.*)$/$1/}s = async (): Promise<${TM_DIRECTORY/^.+\\/(.*)$/$1/}[]> => {",
+      "  return [];",
+      "};",
+      "",
+      "const get${TM_DIRECTORY/^.+\\/(.*)$/$1/} = async (uid: string): Promise<${TM_DIRECTORY/^.+\\/(.*)$/$1/}> => {",
+      "  return ${TM_DIRECTORY/^.+\\/(.*)$/$1/};",
+      "};",
+      "",
+      "const update${TM_DIRECTORY/^.+\\/(.*)$/$1/} = async (${TM_DIRECTORY/^.+\\/(.*)$/$1/}: ${TM_DIRECTORY/^.+\\/(.*)$/$1/}): Promise<${TM_DIRECTORY/^.+\\/(.*)$/$1/}> => {",
+      "  return ${TM_DIRECTORY/^.+\\/(.*)$/$1/};",
+      "};",
+      "",
+      "const delete${TM_DIRECTORY/^.+\\/(.*)$/$1/} = async (uid: string): Promise<void> => {",
+      "  return;",
+      "};",
+      "",
+      "export const ${TM_DIRECTORY/^.+\\/(.*)$/$1/}Impl = {",
+      "create${TM_DIRECTORY/^.+\\/(.*)$/$1/},",
+      "get${TM_DIRECTORY/^.+\\/(.*)$/$1/}s,",
+      "get${TM_DIRECTORY/^.+\\/(.*)$/$1/},",
+      "update${TM_DIRECTORY/^.+\\/(.*)$/$1/},",
+      "delete${TM_DIRECTORY/^.+\\/(.*)$/$1/}",
+      "}"
+    ]
+  },
+  "Router template":  {
+    "prefix": "router",
+    "body": [
+      "import { FastifyInstance } from 'fastify';",
+      "",
+      "export const ${TM_DIRECTORY/^.+\\/(.*)$/$1/}Router = async (fastify: FastifyInstance): Promise<void> => {",
+      "}"
+    ]
+  }
+}

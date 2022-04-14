@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["darwin", "native", "debian-openssl-1.1.x", "linux-musl"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  uid   String @id @default(uuid())
+  name  String
+  users User[]
+}
+
+model User {
+  uid        String   @id @default(uuid())
+  name       String
+  email      String
+  role       UserRole @default(GUEST)
+  company    Company  @relation(fields: [companyUid], references: [uid])
+  companyUid String
+}
+
+enum UserRole {
+  ADMIN
+  GUEST
+}

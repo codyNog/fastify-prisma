@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es2019",
+      "esnext.asynciterable"
+    ],
+    "sourceMap": true,
+    "outDir": "./dist",
+    "target": "es5", // TSはECMAScript 5に変換
+    "module": "commonjs", // TSのモジュールはES Modulesとして出力,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+    },
+    "moduleResolution": "node",
+    "strict": true
+  }
+}

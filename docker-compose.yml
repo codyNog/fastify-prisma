@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      TZ: "Asia/Tokyo"
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 81:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@root.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
+  web:
+    build:
+      context: ./
+      target: base
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/app
+    environment:
+      - DATABASE_URL=postgresql://postgres:root@postgres:5432/postgres
+      - ENABLE_DOCS=true
+    depends_on:
+      - postgres
+      - pgadmin
+    command: sh -c 'yarn && yarn prisma-gen && yarn migrate-dev && yarn dev'
+
+volumes:
+  postgres:
+  pgadmin:
